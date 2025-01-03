@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio Website</title>
+    
+
+
+    <link rel="stylesheet" href="style.css"> 
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+
+</head>
+<body>
+    
+
+    <header class="header">
+        <a href="#" class="logo"><span>M Affan Shahid</span></a>
+        <ul class="nav-links">
+            
+
+            <li>
+                <a href="#experience">Experience</a>
+            </li>
+
+            <li>
+                <a href="#projects">Projects</a>
+            </li>
+
+            
+
+        </ul>
+
+        <i class="fa-solid fa-bars" id="menu-icon"></i>
+
+
+        <a href="#contact">
+            <button class="visit-btn">Say Hello☺</button>
+            
+        </a>
+        
+
+    </header>
+
+    <section id="about" class="about">
+        <div class="about-container">
+            <img src="image.jpg" alt="">
+
+            <div class="info-box">
+                <div class="text">
+                  <h3>Hi, I'm</h3>
+                  <h1>Affan Shahid</h1>
+                    <span>Software Engineer</span>
+                </div>
+
+                <div class="btn-group">
+                    <a href="#contact">
+
+                        <div class="btn">Contact </div> 
+                    </a>
+                   <a href="./MyResume (8).pdf"  download="MyResume_MohammadAffanShahid.pdf" class="btn" >Download CV</a>
+                </div>
+
+                <div class="socials">
+                    <i class="fa-brands fa-github" onclick="location.href='https://github.com/affan0404'"></i>
+                    <i class="fa-brands fa-linkedin" onclick="location.href='https://www.linkedin.com/in/mohammed-affan-shahid-26372a2b2/'"></i>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+   
+    
+
+
+    <section id="experience" class="experience">
+
+        <h2 class="section-title">Experience</h2>
+
+        <div class="experience-info">
+
+            <div class="grid">
+                <div class="grid-card">
+                    <i class="fa-solid fa-code"></i>
+                    <span>Backend Development</span>
+                    <h3>5 months</h3>
+                    <p> "At JDC.ca, improved PowerShell packages and program flow, boosting access speed and functionality. Enhanced error handling, integrated APIs, and documented code, reducing issues and increasing scalability" </p>
+                </div>
+
+                <div class="grid-card">
+                    <i class="fa-solid fa-file-code"></i>
+                    <span>Python Teacher</span>
+                    <h3>4 months</h3>
+                    <p>"At Al-Hijra Academy, taught programming to grades 5-8 through interactive lessons and tailored projects, advancing students' skills with Pygame. Provided individualized support and developed quizzes, improving learning outcomes and student test scores"</p>
+                    
+                </div>
+
+                <div class="grid-card">
+                    <i class="fa-solid fa-robot"></i>
+                    <span>AI Club President</span>
+                    <h3>3 months</h3>
+                    <p>"As AI Club President, revitalized the club by introducing merch, hosting in-person workshops, and organizing festive events to boost engagement. Expanded the board, fostered collaboration, and led a team to develop an AI tutor bot, enhancing student involvement and resources"</p>
+                    
+                </div>
+
+                <div class="grid-card">
+                    <i class="fa-solid fa-list"></i>
+                    <span>CSS Board Member</span>
+                    <h3>1 year</h3>
+                    <p>"As a Computer Science Society Board Member, enhanced the student website and contributed to merchandise design and event organization. Collaborated on new initiatives, increasing student engagement by 25%"</p>
+                    
+                </div>
+
+            </div>
+
+        </div>
+    </section>
+
+    <section id="projects" class="projects">
+        <h2 class="section-title">Recent projects</h2>
+
+        <div class="projects-grid">
+
+            <div class="project-card">
+                <img src="project-1.png" alt="">
+                <h3>Blog Post Website</h3>
+                <p>Developed a blog post website with HTML and CSS, enabling users to post, edit, contact the owner via email, and add images to their posts.</p>
+
+
+
+
+
+
+
+                <div class="btn-group">
+                    <div class="btn">Github Repo</div>
+                </div> 
+            </div>
+
+            <div class="project-card">
+                <img src="project-2.png" alt="">
+                <h3>Attack On Chrome</h3>
+                <p>Created a Python-based Chrome Dino game featuring levels, power-ups, character animations, audio, a menu with multiple screens, and a highscore tracker for enhanced gameplay.</p>
+
+                <div class="btn-group">
+                    <div class="btn">Github Repo</div>
+                </div> 
+            </div>
+
+            <div class="project-card">
+                <img src="project-3.png" alt="">
+                <h3>Addiction Chat Bot</h3>
+                <p>Developed a video game addiction chatbot using Python, OpenAI, and Streamlit to evaluate addiction based on test results, age, and screentime, providing personalized feedback and recommendations.</p>
+
+                <div class="btn-group">
+                    <div class="btn">Github Repo</div>
+                </div> 
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" class="contact-container">
+        <form action="https://api.web3forms.com/submit" method="POST" class="contact">
+            <div class="contact-left-title">
+                <h2>Say Hello☺</h2>
+            </div>
+            <input type="hidden" name="access_key" value="0fde3812-babf-40d9-a8ff-1d8d9e737f03">
+            <input type="text" name="name" placeholder="Your Name" class="contact-inputs" required>
+            <input type="email" name="email" placeholder="Your Email" class="contact-inputs" required>
+            <textarea name="message" placeholder="Your Message" class="contact-inputs" required></textarea>
+            <button type="submit">Submit Form</button>
+        </form>
+    </section>
+    
+
+
+       
+    
+
+    <footer>
+
+        <ul>
+            
+            <li>HTML</li>
+            <li>CSS</li>
+            <li>JavaScript</li>
+            
+        </ul>
+
+        <p class="copywrite">© All Rights Reserved | Affan Shahid</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
