@@ -50,7 +50,7 @@ export default function Portfolio() {
       logo: 'ALHIJRA.webp', 
       period: 'Oct 2024 - Present',
       description: "Taught Python programming to 100+ students grades 5-8 and coached school robotics team to earn 3 trophies at Genius Cup competition",
-      url: 'http://alhijraacademy.com/'
+      url: 'http://alhijramosque.com/'
     },
   ];
 
@@ -70,7 +70,7 @@ export default function Portfolio() {
       company: 'University of Windsor',
       logo: 'uwin.png',
       period: 'September 2025 - Present',
-      description: 'Researched data compression algorithms and visualization techniques, collaborated with PhD students on large-scale data analysis projects, and presented findings at regional symposium.',
+      description: 'Conducting systematic literature review on algorithmic bias in AI and ML systems (2005-2025) across SCOPUS, Web of Science, and Google Scholar. Analyzing bias evolution, categorization frameworks, and preparing research paper to make technical AI bias concepts accessible to non-technical audiences.',
       url: 'https://www.uwindsor.ca'
     },
   ];
@@ -311,7 +311,7 @@ export default function Portfolio() {
           </div>
           <h1 
             key={currentNameIndex}
-            className={`text-6xl mb-2 transition-colors duration-300 animate-writing ${
+            className={`text-6xl mb-4 transition-colors duration-300 animate-writing ${
               darkMode ? 'text-white' : 'text-gray-800'
             }`} 
             style={{ 
@@ -321,7 +321,7 @@ export default function Portfolio() {
           >
             {nameTranslations[currentNameIndex]}
           </h1>
-          <p className={`text-xl transition-colors duration-300 ${
+          <p className={`text-xl mb-4 transition-colors duration-300 ${
             darkMode ? 'text-gray-300' : 'text-gray-600'
           }`}>
             Software Developer
@@ -340,7 +340,7 @@ export default function Portfolio() {
       <section 
         id="work"
         ref={(el) => { if (el) sectionRefs.current['work'] = el; }}
-        className={`min-h-screen py-20 px-4 transition-all duration-1000 ${
+        className={`py-16 px-4 transition-all duration-1000 ${
           visibleSections.has('work') ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
         } ${
           darkMode 
@@ -349,7 +349,7 @@ export default function Portfolio() {
         }`}
       >
         <div className="max-w-4xl mx-auto relative">
-          <div className="mb-16">
+          <div className="mb-12">
             <h2 
               className={`text-4xl mb-4 transition-colors duration-300 ${
                 darkMode ? 'text-white' : 'text-gray-800'
@@ -429,7 +429,7 @@ export default function Portfolio() {
                     <p className={`text-sm mb-2 transition-colors duration-300 ${
                       darkMode ? 'text-purple-400' : 'text-purple-600'
                     }`}>
-                      {exp.company} · {exp.period}
+                      {exp.company} | {exp.period}
                     </p>
                     <p className={`text-sm leading-relaxed transition-colors duration-300 ${
                       darkMode ? 'text-gray-300' : 'text-gray-600'
@@ -456,7 +456,7 @@ export default function Portfolio() {
       <section 
         id="research"
         ref={(el) => { if (el) sectionRefs.current['research'] = el; }}
-        className={`min-h-screen py-20 px-4 transition-all duration-1000 ${
+        className={`py-16 px-4 transition-all duration-1000 ${
           visibleSections.has('research') ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
         } ${
           darkMode 
@@ -465,7 +465,7 @@ export default function Portfolio() {
         }`}
       >
         <div className="max-w-4xl mx-auto relative">
-          <div className="mb-16">
+          <div className="mb-12">
             <h2 
               className={`text-4xl mb-4 transition-colors duration-300 ${
                 darkMode ? 'text-white' : 'text-gray-800'
@@ -572,7 +572,7 @@ export default function Portfolio() {
       <section 
         id="projects"
         ref={(el) => { if (el) sectionRefs.current['projects'] = el; }}
-        className={`min-h-screen py-20 px-4 transition-all duration-1000 ${
+        className={`py-16 px-4 transition-all duration-1000 ${
           visibleSections.has('projects') ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
         } ${
           darkMode 
@@ -581,7 +581,7 @@ export default function Portfolio() {
         }`}
       >
         <div className="max-w-6xl mx-auto">
-          <div className="mb-16">
+          <div className="mb-12">
             <h2 
               className={`text-4xl mb-4 transition-colors duration-300 ${
                 darkMode ? 'text-white' : 'text-gray-800'
@@ -686,7 +686,7 @@ export default function Portfolio() {
       <section 
         id="extracurricular"
         ref={(el) => { if (el) sectionRefs.current['extracurricular'] = el; }}
-        className={`py-20 px-4 transition-all duration-1000 ${
+        className={`py-16 px-4 transition-all duration-1000 ${
           visibleSections.has('extracurricular') ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
         } ${
           darkMode 
@@ -695,7 +695,7 @@ export default function Portfolio() {
         }`}
       >
         <div className="max-w-6xl mx-auto">
-          <div className="mb-16">
+          <div className="mb-12">
             <h2 
               className={`text-4xl mb-4 transition-colors duration-300 ${
                 darkMode ? 'text-white' : 'text-gray-800'
