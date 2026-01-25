@@ -1,15 +1,12 @@
-import React, { useState, useEffect, useRef } from 'react';
+import { useState, useEffect, useRef } from 'react';
 
 export default function Portfolio() {
-  const [hoveredExp, setHoveredExp] = useState(null);
-  const [currentProject, setCurrentProject] = useState(0);
+  const [hoveredExp, setHoveredExp] = useState<number | null>(null);
   const [darkMode, setDarkMode] = useState(false);
-  const [likedProjects, setLikedProjects] = useState({});
-  const [expandedOrg, setExpandedOrg] = useState(null);
+  const [likedProjects, setLikedProjects] = useState<{[key: number]: boolean}>({});
   const [visibleSections, setVisibleSections] = useState(new Set());
   const [currentNameIndex, setCurrentNameIndex] = useState(0);
-  const laptopRef = useRef(null);
-  const sectionRefs = useRef({});
+  const sectionRefs = useRef<{[key: string]: HTMLElement | null}>({});
 
   const nameTranslations = [
     'Affan Shahid',
@@ -53,7 +50,7 @@ export default function Portfolio() {
       logo: 'ALHIJRA.webp', 
       period: 'Oct 2024 - Present',
       description: "Taught Python programming to 100+ students grades 5-8 and coached school robotics team to earn 3 trophies at Genius Cup competition",
-      url: 'http://alhijramosque.com/'
+      url: 'http://alhijraacademy.com/'
     },
   ];
 
@@ -177,16 +174,11 @@ export default function Portfolio() {
   ];
 
 
-  const toggleLike = (projectId) => {
+  const toggleLike = (projectId: number) => {
     setLikedProjects(prev => ({
       ...prev,
       [projectId]: !prev[projectId]
     }));
-  };
-
-  const toggleExpanded = (organization, e) => {
-    e.stopPropagation();
-    setExpandedOrg(expandedOrg === organization ? null : organization);
   };
 
   useEffect(() => {
@@ -215,14 +207,6 @@ export default function Portfolio() {
 
     return () => clearInterval(interval);
   }, []);
-
-  const nextProject = () => {
-    setCurrentProject((prev) => (prev + 1) % projects.length);
-  };
-
-  const prevProject = () => {
-    setCurrentProject((prev) => (prev - 1 + projects.length) % projects.length);
-  };
 
   return (
     <div className={`min-h-screen w-full transition-all duration-500 ${
@@ -308,7 +292,7 @@ export default function Portfolio() {
       {/* Hero Section */}
       <section 
         id="hero"
-        ref={(el) => (sectionRefs.current['hero'] = el)}
+        ref={(el) => { if (el) sectionRefs.current['hero'] = el; }}
         className={`min-h-screen flex items-center justify-center px-4 transition-all duration-1000 ${
           darkMode 
             ? 'bg-gradient-to-b from-gray-900 via-purple-900 to-gray-900' 
@@ -355,7 +339,7 @@ export default function Portfolio() {
       {/* Work Experience Section */}
       <section 
         id="work"
-        ref={(el) => (sectionRefs.current['work'] = el)}
+        ref={(el) => { if (el) sectionRefs.current['work'] = el; }}
         className={`min-h-screen py-20 px-4 transition-all duration-1000 ${
           visibleSections.has('work') ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
         } ${
@@ -471,7 +455,7 @@ export default function Portfolio() {
       {/* Research Section */}
       <section 
         id="research"
-        ref={(el) => (sectionRefs.current['research'] = el)}
+        ref={(el) => { if (el) sectionRefs.current['research'] = el; }}
         className={`min-h-screen py-20 px-4 transition-all duration-1000 ${
           visibleSections.has('research') ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
         } ${
@@ -587,7 +571,7 @@ export default function Portfolio() {
       {/* Projects Section */}
       <section 
         id="projects"
-        ref={(el) => (sectionRefs.current['projects'] = el)}
+        ref={(el) => { if (el) sectionRefs.current['projects'] = el; }}
         className={`min-h-screen py-20 px-4 transition-all duration-1000 ${
           visibleSections.has('projects') ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
         } ${
@@ -701,7 +685,7 @@ export default function Portfolio() {
       {/* Extracurricular Section */}
       <section 
         id="extracurricular"
-        ref={(el) => (sectionRefs.current['extracurricular'] = el)}
+        ref={(el) => { if (el) sectionRefs.current['extracurricular'] = el; }}
         className={`py-20 px-4 transition-all duration-1000 ${
           visibleSections.has('extracurricular') ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
         } ${
