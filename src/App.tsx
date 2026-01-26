@@ -1,9 +1,14 @@
 import { useState, useEffect, useRef } from 'react';
 
+// Supabase configuration
+const SUPABASE_URL = 'https://peakbloaytdaxtazkfza.supabase.co';
+const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InBlYWtibG9heXRkYXh0YXprZnphIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjkzMTk3MDYsImV4cCI6MjA4NDg5NTcwNn0.TcEcvNVSXTRab0PgdOeavlcpWIK-fwpG-aL4O0QzetI';
+
 export default function Portfolio() {
   const [hoveredExp, setHoveredExp] = useState<number | null>(null);
   const [darkMode, setDarkMode] = useState(false);
   const [likedProjects, setLikedProjects] = useState<{[key: number]: boolean}>({});
+  const [projectLikeCounts, setProjectLikeCounts] = useState<{[key: number]: number}>({});
   const [visibleSections, setVisibleSections] = useState(new Set());
   const [currentNameIndex, setCurrentNameIndex] = useState(0);
   const sectionRefs = useRef<{[key: string]: HTMLElement | null}>({});
@@ -82,8 +87,7 @@ export default function Portfolio() {
       url: 'https://gymclock.app/', 
       image: 'gym.png',
       description: "Won 2nd place at CUSEC (largest Canadian software engineering conference) for a workout-based alarm clock app requiring users to complete exercises to deactivate alarms, achieving 500+ wishlists",
-      tags: ['React Native', 'Swift', 'Expo', 'supabase'],
-      likes: 234
+      tags: ['React Native', 'Swift', 'Expo', 'supabase']
     },
     { 
       id: 2, 
@@ -91,8 +95,7 @@ export default function Portfolio() {
       url: 'https://tryquikli.ca/', 
       image: 'quikli.png',
       description: "A comprehensive local service marketplace platform connecting users with verified service providers for seamless real-time task management, scheduling, and secure booking experiences, generating 1500+ wishlists",
-      tags: ['React Native', 'Spring Boot', 'PostgreSQL'],
-      likes: 189
+      tags: ['React Native', 'Spring Boot', 'PostgreSQL']
     },
     { 
       id: 3, 
@@ -100,8 +103,7 @@ export default function Portfolio() {
       url: 'https://docimate.com/', 
       image: 'birddd.png',
       description: "Won Best Overall, Best UI/UX, Best Finance at WinHacks 2025 and 3rd at Google DevFest 2025 for a document-processing app converting documents into structured tables",
-      tags: ['React', 'TypeScript', 'Next.js', 'Gemini'],
-      likes: 456
+      tags: ['React', 'TypeScript', 'Next.js', 'Gemini']
     },
   ];
 
@@ -173,12 +175,101 @@ export default function Portfolio() {
     },
   ];
 
+  // Load like counts from Supabase on mount
+  useEffect(() => {
+    const loadLikeCounts = async () => {
+      try {
+        const response = await fetch(`${SUPABASE_URL}/rest/v1/project_likes?select=*`, {
+          headers: {
+            'apikey': SUPABASE_ANON_KEY,
+            'Authorization': `Bearer ${SUPABASE_ANON_KEY}`
+          }
+        });
+        const data = await response.json();
+        
+        const counts: {[key: number]: number} = {};
+        data.forEach((item: any) => {
+          counts[item.project_id] = item.like_count;
+        });
+        setProjectLikeCounts(counts);
+      } catch (error) {
+        console.error('Failed to load like counts:', error);
+      }
+    };
+    loadLikeCounts();
+  }, []);
 
-  const toggleLike = (projectId: number) => {
-    setLikedProjects(prev => ({
+  // Load user's liked projects from local storage
+  useEffect(() => {
+    const savedLikes = localStorage.getItem('userLikedProjects');
+    if (savedLikes) {
+      setLikedProjects(JSON.parse(savedLikes));
+    }
+  }, []);
+
+  const toggleLike = async (projectId: number) => {
+    const isCurrentlyLiked = likedProjects[projectId];
+    const newLikedState = !isCurrentlyLiked;
+    
+    // Update user's liked state immediately for UI responsiveness
+    const newLikedProjects = {
+      ...likedProjects,
+      [projectId]: newLikedState
+    };
+    setLikedProjects(newLikedProjects);
+    localStorage.setItem('userLikedProjects', JSON.stringify(newLikedProjects));
+    
+    // Calculate new count
+    const currentCount = projectLikeCounts[projectId] || 0;
+    const newCount = newLikedState ? currentCount + 1 : Math.max(0, currentCount - 1);
+    
+    // Optimistically update UI
+    setProjectLikeCounts(prev => ({
       ...prev,
-      [projectId]: !prev[projectId]
+      [projectId]: newCount
     }));
+    
+    try {
+      // First, get the current row to update it
+      const getResponse = await fetch(`${SUPABASE_URL}/rest/v1/project_likes?project_id=eq.${projectId}&select=*`, {
+        headers: {
+          'apikey': SUPABASE_ANON_KEY,
+          'Authorization': `Bearer ${SUPABASE_ANON_KEY}`
+        }
+      });
+      
+      const currentData = await getResponse.json();
+      console.log('Current data:', currentData);
+      
+      if (currentData && currentData[0]) {
+        // Update the like count using RPC or direct update
+        const updateResponse = await fetch(`${SUPABASE_URL}/rest/v1/project_likes?project_id=eq.${projectId}`, {
+          method: 'PATCH',
+          headers: {
+            'apikey': SUPABASE_ANON_KEY,
+            'Authorization': `Bearer ${SUPABASE_ANON_KEY}`,
+            'Content-Type': 'application/json',
+            'Prefer': 'return=minimal'
+          },
+          body: JSON.stringify({ like_count: newCount })
+        });
+        
+        console.log('Update response status:', updateResponse.status);
+        
+        if (!updateResponse.ok) {
+          const errorText = await updateResponse.text();
+          console.error('Update error:', errorText);
+          throw new Error('Failed to update like count');
+        }
+      }
+    } catch (error) {
+      console.error('Failed to update like count:', error);
+      // Revert on error
+      setProjectLikeCounts(prev => ({
+        ...prev,
+        [projectId]: currentCount
+      }));
+    }
   };
 
   useEffect(() => {
@@ -306,7 +397,7 @@ export default function Portfolio() {
             <div className={`w-full h-full rounded-full flex items-center justify-center overflow-hidden ${
               darkMode ? 'bg-gray-800' : 'bg-white'
             }`}>
-              <img src="pfp2.png" alt="Profile" className="w-full h-full object-cover" />
+              <img src="pfp.png" alt="Profile" className="w-full h-full object-cover" />
             </div>
           </div>
           <h1 
@@ -646,7 +737,7 @@ export default function Portfolio() {
                   <p className={`text-xs font-semibold mb-2 transition-colors duration-300 ${
                     darkMode ? 'text-white' : 'text-gray-800'
                   }`}>
-                    {likedProjects[project.id] ? project.likes + 1 : project.likes} likes
+                    {projectLikeCounts[project.id] || 0} likes
                   </p>
 
                   <h3 className={`text-base font-bold mb-1 transition-colors duration-300 ${
@@ -870,4 +961,5 @@ export default function Portfolio() {
     </div>
   );
 }
+
 
