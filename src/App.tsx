@@ -397,7 +397,7 @@ export default function Portfolio() {
             <div className={`w-full h-full rounded-full flex items-center justify-center overflow-hidden ${
               darkMode ? 'bg-gray-800' : 'bg-white'
             }`}>
-              <img src="pfp.png" alt="Profile" className="w-full h-full object-cover" />
+              <img src="pfp2.png" alt="Profile" className="w-full h-full object-cover" />
             </div>
           </div>
           <h1 
