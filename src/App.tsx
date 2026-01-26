@@ -312,10 +312,10 @@ export default function Portfolio() {
           ? 'bg-gray-900/95 backdrop-blur-sm border-b border-purple-500/20' 
           : 'bg-white/95 backdrop-blur-sm border-b border-pink-100'
       }`}>
-        <div className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 py-3 sm:py-4 flex items-center justify-between">
           <button
             onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
-            className={`text-2xl font-bold transition-colors duration-300 hover:scale-105 ${
+            className={`text-xl sm:text-2xl font-bold transition-colors duration-300 hover:scale-105 ${
               darkMode ? 'text-white hover:text-purple-400' : 'text-gray-800 hover:text-purple-600'
             }`}
             style={{ fontFamily: '-apple-system, BlinkMacSystemFont, "SF Pro Display", "Segoe UI", Roboto, sans-serif' }}
@@ -323,12 +323,12 @@ export default function Portfolio() {
             Portfolio
           </button>
           
-          <div className="flex items-center gap-4">
+          <div className="flex items-center gap-2 sm:gap-4">
             <a
               href="https://www.linkedin.com/in/mohammad-affan-shahid-26372a2b2/"
               target="_blank"
               rel="noopener noreferrer"
-              className={`px-8 py-3 rounded-full text-base font-semibold transition-all duration-300 hover:scale-105 shadow-lg ${
+              className={`px-4 sm:px-8 py-2 sm:py-3 rounded-full text-sm sm:text-base font-semibold transition-all duration-300 hover:scale-105 shadow-lg ${
                 darkMode 
                   ? 'bg-purple-600 text-white hover:bg-purple-500 hover:shadow-purple-500/50' 
                   : 'bg-purple-600 text-white hover:bg-purple-700 hover:shadow-purple-300/50'
@@ -340,7 +340,7 @@ export default function Portfolio() {
               href="/affanportfolio.pdf"
               target="_blank"
               rel="noopener noreferrer"
-              className={`px-8 py-3 rounded-full text-base font-semibold transition-all duration-300 hover:scale-105 shadow-lg ${
+              className={`px-4 sm:px-8 py-2 sm:py-3 rounded-full text-sm sm:text-base font-semibold transition-all duration-300 hover:scale-105 shadow-lg ${
                 darkMode 
                   ? 'border-2 border-purple-500 text-purple-400 hover:bg-purple-500/10 hover:shadow-purple-500/30' 
                   : 'border-2 border-purple-600 text-purple-600 hover:bg-purple-50 hover:shadow-purple-300/50'
@@ -391,7 +391,7 @@ export default function Portfolio() {
         }`}
       >
         <div className="text-center animate-fadeIn">
-          <div className={`w-48 h-48 mx-auto mb-8 rounded-full bg-gradient-to-br from-purple-400 via-pink-400 to-orange-400 p-1 transform hover:scale-105 transition-transform duration-300 shadow-2xl ${
+          <div className={`w-32 h-32 sm:w-48 sm:h-48 mx-auto mb-6 sm:mb-8 rounded-full bg-gradient-to-br from-purple-400 via-pink-400 to-orange-400 p-1 transform hover:scale-105 transition-transform duration-300 shadow-2xl ${
             darkMode ? 'shadow-purple-500/50' : 'shadow-pink-300/50'
           }`}>
             <div className={`w-full h-full rounded-full flex items-center justify-center overflow-hidden ${
@@ -402,7 +402,7 @@ export default function Portfolio() {
           </div>
           <h1 
             key={currentNameIndex}
-            className={`text-6xl mb-4 transition-colors duration-300 animate-writing ${
+            className={`text-4xl sm:text-6xl mb-4 transition-colors duration-300 animate-writing ${
               darkMode ? 'text-white' : 'text-gray-800'
             }`} 
             style={{ 
@@ -412,7 +412,7 @@ export default function Portfolio() {
           >
             {nameTranslations[currentNameIndex]}
           </h1>
-          <p className={`text-xl mb-4 transition-colors duration-300 ${
+          <p className={`text-lg sm:text-xl mb-4 transition-colors duration-300 ${
             darkMode ? 'text-gray-300' : 'text-gray-600'
           }`}>
             Software Developer
@@ -420,7 +420,7 @@ export default function Portfolio() {
           <div className={`max-w-2xl mx-auto px-4 transition-colors duration-300 ${
             darkMode ? 'text-gray-400' : 'text-gray-600'
           }`}>
-            <p className="text-base leading-relaxed">
+            <p className="text-sm sm:text-base leading-relaxed">
               I'm a passionate software developer and researcher focused on building innovative solutions. Currently President of the UWindsor Computer Science Society and conducting research at WASP Labs. When I'm not coding, you'll find me traveling the world or training for my next marathon!
             </p>
           </div>
@@ -442,7 +442,7 @@ export default function Portfolio() {
         <div className="max-w-4xl mx-auto relative">
           <div className="mb-12">
             <h2 
-              className={`text-4xl mb-4 transition-colors duration-300 ${
+              className={`text-3xl sm:text-4xl mb-4 transition-colors duration-300 ${
                 darkMode ? 'text-white' : 'text-gray-800'
               }`}
               style={{ 
@@ -452,7 +452,7 @@ export default function Portfolio() {
             >
               Work Experience
             </h2>
-            <p className={`text-lg transition-colors duration-300 ${
+            <p className={`text-base sm:text-lg transition-colors duration-300 ${
               darkMode ? 'text-gray-400' : 'text-gray-600'
             }`}>
               My track record across academia and industry.
@@ -460,7 +460,7 @@ export default function Portfolio() {
           </div>
 
           <div 
-            className={`absolute left-0 w-1 rounded-full transition-colors duration-300 ${
+            className={`absolute left-0 w-1 rounded-full transition-colors duration-300 hidden sm:block ${
               darkMode 
                 ? 'bg-gradient-to-b from-purple-500 via-pink-500 to-orange-500' 
                 : 'bg-gradient-to-b from-purple-300 via-pink-300 to-orange-300'
@@ -471,14 +471,14 @@ export default function Portfolio() {
             }}
           ></div>
 
-          <div className="space-y-8 pl-12">
+          <div className="space-y-8 sm:pl-12">
             {workExperiences.map((exp, index) => (
               <div
                 key={exp.id}
                 className="relative"
               >
                 <div 
-                  className={`absolute w-4 h-4 rounded-full border-4 transition-colors duration-300 ${
+                  className={`absolute w-4 h-4 rounded-full border-4 transition-colors duration-300 hidden sm:block ${
                     darkMode 
                       ? 'bg-pink-500 border-gray-800' 
                       : 'bg-pink-400 border-white'
@@ -490,7 +490,7 @@ export default function Portfolio() {
                 ></div>
 
                 <div
-                  className={`flex gap-6 p-6 rounded-2xl transition-all duration-300 hover:scale-[1.02] cursor-pointer ${
+                  className={`flex flex-col sm:flex-row gap-4 sm:gap-6 p-4 sm:p-6 rounded-2xl transition-all duration-300 hover:scale-[1.02] cursor-pointer ${
                     darkMode 
                       ? 'bg-gray-700/50 hover:bg-gray-700/70 border border-purple-500/20' 
                       : 'bg-gray-50 hover:shadow-xl border border-pink-100'
@@ -499,7 +499,7 @@ export default function Portfolio() {
                   onMouseLeave={() => setHoveredExp(null)}
                   onClick={() => window.open(exp.url, '_blank')}
                 >
-                  <div className={`flex-shrink-0 w-16 h-16 rounded-xl flex items-center justify-center text-3xl transition-all duration-300 overflow-hidden ${
+                  <div className={`flex-shrink-0 w-14 h-14 sm:w-16 sm:h-16 rounded-xl flex items-center justify-center text-3xl transition-all duration-300 overflow-hidden ${
                     hoveredExp === exp.id 
                       ? 'scale-110' 
                       : ''
@@ -512,17 +512,17 @@ export default function Portfolio() {
                   </div>
 
                   <div className="flex-1">
-                    <h3 className={`text-xl font-semibold mb-1 transition-colors duration-300 ${
+                    <h3 className={`text-lg sm:text-xl font-semibold mb-1 transition-colors duration-300 ${
                       darkMode ? 'text-white' : 'text-gray-800'
                     }`}>
                       {exp.title}
                     </h3>
-                    <p className={`text-sm mb-2 transition-colors duration-300 ${
+                    <p className={`text-xs sm:text-sm mb-2 transition-colors duration-300 ${
                       darkMode ? 'text-purple-400' : 'text-purple-600'
                     }`}>
                       {exp.company} | {exp.period}
                     </p>
-                    <p className={`text-sm leading-relaxed transition-colors duration-300 ${
+                    <p className={`text-xs sm:text-sm leading-relaxed transition-colors duration-300 ${
                       darkMode ? 'text-gray-300' : 'text-gray-600'
                     }`}>
                       {exp.description}
@@ -558,7 +558,7 @@ export default function Portfolio() {
         <div className="max-w-4xl mx-auto relative">
           <div className="mb-12">
             <h2 
-              className={`text-4xl mb-4 transition-colors duration-300 ${
+              className={`text-3xl sm:text-4xl mb-4 transition-colors duration-300 ${
                 darkMode ? 'text-white' : 'text-gray-800'
               }`}
               style={{ 
@@ -568,7 +568,7 @@ export default function Portfolio() {
             >
               Research
             </h2>
-            <p className={`text-lg transition-colors duration-300 ${
+            <p className={`text-base sm:text-lg transition-colors duration-300 ${
               darkMode ? 'text-gray-400' : 'text-gray-600'
             }`}>
               Academic research and scholarly contributions.
@@ -576,7 +576,7 @@ export default function Portfolio() {
           </div>
 
           <div 
-            className={`absolute left-0 w-1 rounded-full transition-colors duration-300 ${
+            className={`absolute left-0 w-1 rounded-full transition-colors duration-300 hidden sm:block ${
               darkMode 
                 ? 'bg-gradient-to-b from-purple-500 via-pink-500 to-orange-500' 
                 : 'bg-gradient-to-b from-purple-300 via-pink-300 to-orange-300'
@@ -587,14 +587,14 @@ export default function Portfolio() {
             }}
           ></div>
 
-          <div className="space-y-8 pl-12">
+          <div className="space-y-8 sm:pl-12">
             {researchExperiences.map((exp, index) => (
               <div
                 key={exp.id}
                 className="relative"
               >
                 <div 
-                  className={`absolute w-4 h-4 rounded-full border-4 transition-colors duration-300 ${
+                  className={`absolute w-4 h-4 rounded-full border-4 transition-colors duration-300 hidden sm:block ${
                     darkMode 
                       ? 'bg-pink-500 border-gray-800' 
                       : 'bg-pink-400 border-white'
@@ -606,7 +606,7 @@ export default function Portfolio() {
                 ></div>
 
                 <div
-                  className={`flex gap-6 p-6 rounded-2xl transition-all duration-300 hover:scale-[1.02] cursor-pointer ${
+                  className={`flex flex-col sm:flex-row gap-4 sm:gap-6 p-4 sm:p-6 rounded-2xl transition-all duration-300 hover:scale-[1.02] cursor-pointer ${
                     darkMode 
                       ? 'bg-gray-700/50 hover:bg-gray-700/70 border border-purple-500/20' 
                       : 'bg-white hover:shadow-xl border border-pink-100'
@@ -674,7 +674,7 @@ export default function Portfolio() {
         <div className="max-w-6xl mx-auto">
           <div className="mb-12">
             <h2 
-              className={`text-4xl mb-4 transition-colors duration-300 ${
+              className={`text-3xl sm:text-4xl mb-4 transition-colors duration-300 ${
                 darkMode ? 'text-white' : 'text-gray-800'
               }`}
               style={{ 
@@ -684,7 +684,7 @@ export default function Portfolio() {
             >
               Projects
             </h2>
-            <p className={`text-lg transition-colors duration-300 ${
+            <p className={`text-base sm:text-lg transition-colors duration-300 ${
               darkMode ? 'text-gray-400' : 'text-gray-600'
             }`}>
               Featured work and side projects.
@@ -788,7 +788,7 @@ export default function Portfolio() {
         <div className="max-w-6xl mx-auto">
           <div className="mb-12">
             <h2 
-              className={`text-4xl mb-4 transition-colors duration-300 ${
+              className={`text-3xl sm:text-4xl mb-4 transition-colors duration-300 ${
                 darkMode ? 'text-white' : 'text-gray-800'
               }`}
               style={{ 
@@ -798,7 +798,7 @@ export default function Portfolio() {
             >
               Extracurricular
             </h2>
-            <p className={`text-lg transition-colors duration-300 ${
+            <p className={`text-base sm:text-lg transition-colors duration-300 ${
               darkMode ? 'text-gray-400' : 'text-gray-600'
             }`}>
               Leadership and community involvement.
@@ -961,5 +961,4 @@ export default function Portfolio() {
     </div>
   );
 }
-
 
