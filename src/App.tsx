@@ -1,4 +1,5 @@
 import { useState, useEffect, useRef } from 'react';
+import Header from './Header';
 
 // Supabase configuration
 const SUPABASE_URL = 'https://peakbloaytdaxtazkfza.supabase.co';
@@ -307,50 +308,7 @@ export default function Portfolio() {
     }`} style={{ scrollBehavior: 'smooth' }}>
       
       {/* Header Navigation */}
-      <header className={`fixed top-0 left-0 right-0 z-40 transition-all duration-300 ${
-        darkMode 
-          ? 'bg-gray-900/95 backdrop-blur-sm border-b border-purple-500/20' 
-          : 'bg-white/95 backdrop-blur-sm border-b border-pink-100'
-      }`}>
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 py-3 sm:py-4 flex items-center justify-between">
-          <button
-            onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
-            className={`text-xl sm:text-2xl font-bold transition-colors duration-300 hover:scale-105 ${
-              darkMode ? 'text-white hover:text-purple-400' : 'text-gray-800 hover:text-purple-600'
-            }`}
-            style={{ fontFamily: '-apple-system, BlinkMacSystemFont, "SF Pro Display", "Segoe UI", Roboto, sans-serif' }}
-          >
-            Portfolio
-          </button>
-          
-          <div className="flex items-center gap-2 sm:gap-4">
-            <a
-              href="https://www.linkedin.com/in/mohammad-affan-shahid-26372a2b2/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className={`px-4 sm:px-8 py-2 sm:py-3 rounded-full text-sm sm:text-base font-semibold transition-all duration-300 hover:scale-105 shadow-lg ${
-                darkMode 
-                  ? 'bg-purple-600 text-white hover:bg-purple-500 hover:shadow-purple-500/50' 
-                  : 'bg-purple-600 text-white hover:bg-purple-700 hover:shadow-purple-300/50'
-              }`}
-            >
-              Contact
-            </a>
-            <a
-              href="/affanportfolio.pdf"
-              target="_blank"
-              rel="noopener noreferrer"
-              className={`px-4 sm:px-8 py-2 sm:py-3 rounded-full text-sm sm:text-base font-semibold transition-all duration-300 hover:scale-105 shadow-lg ${
-                darkMode 
-                  ? 'border-2 border-purple-500 text-purple-400 hover:bg-purple-500/10 hover:shadow-purple-500/30' 
-                  : 'border-2 border-purple-600 text-purple-600 hover:bg-purple-50 hover:shadow-purple-300/50'
-              }`}
-            >
-              Resume
-            </a>
-          </div>
-        </div>
-      </header>
+      <Header darkMode={darkMode} />
 
       {/* Dark Mode Toggle */}
       <button
@@ -391,15 +349,20 @@ export default function Portfolio() {
         }`}
       >
         <div className="text-center animate-fadeIn">
-          <div className={`w-32 h-32 sm:w-48 sm:h-48 mx-auto mb-6 sm:mb-8 rounded-full bg-gradient-to-br from-purple-400 via-pink-400 to-orange-400 p-1 transform hover:scale-105 transition-transform duration-300 shadow-2xl ${
-            darkMode ? 'shadow-purple-500/50' : 'shadow-pink-300/50'
-          }`}>
+          <a
+            href="https://www.linkedin.com/in/mohammad-affan-shahid-26372a2b2/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className={`block w-32 h-32 sm:w-48 sm:h-48 mx-auto mb-6 sm:mb-8 rounded-full bg-gradient-to-br from-purple-400 via-pink-400 to-orange-400 p-1 transform hover:scale-105 transition-transform duration-300 shadow-2xl cursor-pointer ${
+              darkMode ? 'shadow-purple-500/50' : 'shadow-pink-300/50'
+            }`}
+          >
             <div className={`w-full h-full rounded-full flex items-center justify-center overflow-hidden ${
               darkMode ? 'bg-gray-800' : 'bg-white'
             }`}>
               <img src="pfp.png" alt="Profile" className="w-full h-full object-cover" />
             </div>
-          </div>
+          </a>
           <h1 
             key={currentNameIndex}
             className={`text-4xl sm:text-6xl mb-4 transition-colors duration-300 animate-writing ${
@@ -961,4 +924,5 @@ export default function Portfolio() {
     </div>
   );
 }
+
 
